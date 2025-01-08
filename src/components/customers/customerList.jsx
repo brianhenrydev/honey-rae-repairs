@@ -1,6 +1,8 @@
+
 import { useEffect, useState } from "react"
 import { getRegularUsers } from "../../services/UserService"
-import { User } from "../user/User"
+import { Customer } from "./Customer"
+
 
 export const CustomerList = () => {
   const [customers, setCustomers] = useState([])
@@ -11,13 +13,13 @@ export const CustomerList = () => {
 
   return (
     <div className="customers">
-      {customers.map(({ fullName, email, id }) => <User key={id} fullName={fullName} email={email} id={id} />)
+      {customers.map(({ fullName, email, id }) => (
+        <Customer key={id} fullName={fullName} email={email} id={id} />
+      ))
       }
     </div>
 
   )
 }
-
-
 
 

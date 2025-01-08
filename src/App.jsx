@@ -1,13 +1,23 @@
 import "./App.css"
-import { CustomerList } from "./components/customers/customerList"
-import { EmployeeList } from "./components/employees/EmployeeList"
-import { TicketList } from "./components/tickets/TicketList"
+import { Routes, Route } from "react-router-dom"
+import { Login } from "./components/auth/Login"
+import { Register } from "./components/auth/Register"
+import { Authorized } from "./views/Authorized"
+import { ApplicationViews } from "./views/ApplicationViews"
 
 export const App = () => (
   <>
-    <TicketList />
-    <CustomerList />
-    <EmployeeList />
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+
+      <Route path="*"
+        element={
+          <Authorized>
+            <ApplicationViews />
+          </Authorized>}
+      />
+    </Routes>
 
   </>
 )

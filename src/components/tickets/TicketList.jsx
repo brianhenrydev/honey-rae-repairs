@@ -4,14 +4,18 @@ import "./Ticket.css"
 import { Ticket } from "./Ticket";
 import { TicketFilterBar } from "../TicketFilterBar"
 
-export const TicketList = () => {
+export const TicketList = ({ user }) => {
   const [allTickets, setAllTickets] = useState([]);
   const [filteredTickets, setFilteredTickets] = useState([])
   const [emergencyFilter, setEmergencyFilter] = useState(false);
   const [searchTerm, setSearchTerm] = useState("")
 
-  useEffect(() => {
+  const getAndSetTickets = () => {
     getAllTickets().then(ticketArr => setAllTickets(ticketArr))
+  }
+
+  useEffect(() => {
+    getAndSetTickets()
   }
     , [])
 
@@ -36,8 +40,14 @@ export const TicketList = () => {
           setSearchTerm={setSearchTerm}
         />
 
+
         {
-          filteredTickets.map((ticketObj) => <Ticket ticket={ticketObj} key={ticketObj.id} />)
+          filteredTickets.map((ticketObj) =>
+            <Ticket
+              ticket={ticketObj}
+              getAndSetTickets={getAndSetTickets}
+              user={user}
+              key={ticketObj.id} />)
         }
       </article>
     </div>)
