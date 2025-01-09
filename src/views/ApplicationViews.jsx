@@ -7,6 +7,7 @@ import { TicketList } from "../components/tickets/TicketList"
 import { Welcome } from "../components/welcome/Welcome"
 import { CustomerDetails } from "../components/customers/CustomerDetails"
 import { EmployeeDetails } from "../components/employees/EmployeeDetails"
+import { EmployeeForm } from "../components/forms/EmployeeForm"
 import { useEffect, useState } from "react"
 
 export const ApplicationViews = () => {
@@ -39,6 +40,8 @@ export const ApplicationViews = () => {
           <Route path=":customerId" element={<CustomerDetails />}>
           </Route>
         </Route>
+
+        <Route path="profile" element={<EmployeeForm currentUser={currentUser} />} />
 
       </Route>
     </Routes>
