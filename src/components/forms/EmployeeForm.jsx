@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { getEmployeeById, updateEmployee } from "../../services/EmployeeService"
+import PropTypes from "prop-types"
 import "./Form.css"
 
 
@@ -68,4 +69,7 @@ export const EmployeeForm = ({ currentUser }) => {
       </fieldset>
     </form>
   )
+}
+EmployeeForm.propTypes = {
+  currentUser: PropTypes.object.isRequired
 }

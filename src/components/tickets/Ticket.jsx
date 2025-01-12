@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { getAllEmployees } from "../../services/EmployeeService"
-import { assignTicket, closeTicket } from "../../services/TicketService"
+import { assignTicket, closeTicket, deleteTicket } from "../../services/TicketService"
 
 export const Ticket = ({ ticket, user, getAndSetTickets }) => {
   const [employees, setEmployees] = useState([])
@@ -37,6 +37,12 @@ export const Ticket = ({ ticket, user, getAndSetTickets }) => {
 
   }
 
+  const handleDelete = () => {
+    deleteTicket(ticket.id).then(() => {
+      getAndSetTickets()
+    })
+  }
+
 
 
   return (
@@ -54,13 +60,14 @@ export const Ticket = ({ ticket, user, getAndSetTickets }) => {
         </div>
         <div className="btn-container">
           {user.isStaff && !assignedEmployee ?
-            <button onClick={handleClaim} className="btn btn-secondary">Claim</button> : ''}
+            <button onClick={handleClaim} className="btn btn-secondary">Claim</button> : ""}
+          {!user.isStaff && ticket.dateCompleted === "" ? (<button className="btn-warning" onClick={handleDelete}>Delete</button>) : ("")}
 
           {assignedEmployee?.userId === user.id && !ticket.dateCompleted ?
             <button onClick={handleClose} className="btn btn-warning">Close</button> : ticket.dateCompleted}
         </div>
       </footer>
-    </section>
+    </section >
   )
 }
 

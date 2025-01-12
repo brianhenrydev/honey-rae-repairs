@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import "./NavBar.css"
 
-export const NavBar = () => {
+export const EmployeeNav = () => {
   const navigate = useNavigate()
 
   return (
@@ -30,7 +30,7 @@ export const NavBar = () => {
             to=""
             onClick={() => {
               localStorage.removeItem("honey_user")
-              navigate("/", { replace: true })
+              navto("/", { replace: true })
             }}
           >
             Logout</Link>
